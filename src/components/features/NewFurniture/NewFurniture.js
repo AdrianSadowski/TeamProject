@@ -54,28 +54,23 @@ class NewFurniture extends React.Component {
     const {
       categories,
       products,
-      mode, 
-      /*productsPage*/ //nie działa po mergu
-      addRating,
+      mode, //nie działa po mergu
+      /*productsPage*/ dots,
+      // addRating,
       subpage,
     } = this.props;
     const { activeCategory, activePage, activeFade } = this.state;
-    const { categories, products, mode, subpage } = this.props;
-    let columnNumber;
     let productsPerPage;
     let styleMenu;
 
     switch (mode) {
       case 'mobile':
-        columnNumber = 'col-6';
         productsPerPage = 1;
         break;
       case 'tablet':
-        columnNumber = 'col-4';
         productsPerPage = 2;
         break;
       case 'desktop':
-        columnNumber = 'col-3';
         productsPerPage = 8;
         break;
       default:
@@ -83,10 +78,8 @@ class NewFurniture extends React.Component {
     }
 
     if (subpage === 'homePage') {
-      columnNumber = 'col-lg-3 col-sm-6 mb-5';
       productsPerPage = 4;
     } else if (subpage === 'pageShop') {
-      columnNumber = 'col-lg-4 col-sm-6';
       productsPerPage = 12;
     }
 
@@ -100,19 +93,6 @@ class NewFurniture extends React.Component {
           .map(item => (
             <div key={item.id} className='col-lg-3 col-sm-6'>
               <ProductBox {...item} />
-            </div>
-          ))
-      );
-    }
-
-    const pages = [];
-    for (let i = 0; i < pagesCount; i++) {
-      pages.push(
-        categoryProducts
-          .slice(i * productsPerPage, (i + 1) * productsPerPage)
-          .map(item => (
-            <div key={item.id} className={columnNumber}>
-              <ProductBox {...item} addRating={addRating} />
             </div>
           ))
       );
@@ -158,7 +138,7 @@ class NewFurniture extends React.Component {
               handlePageChange={this.handlePageChange.bind(this)}
               pages={pages}
             />
-          </div
+          </div>
           <SectionHeading
             title={'New furniture'}
             pagesCount={pagesCount}
@@ -185,6 +165,7 @@ NewFurniture.propTypes = {
   children: PropTypes.node,
   //productsPage: PropTypes.string,
   subpage: PropTypes.string,
+  dots: PropTypes.string,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

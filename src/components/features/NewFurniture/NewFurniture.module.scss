@@ -172,17 +172,12 @@
 }
 
 @media (max-width: 360px) {
-  .root {
-    .panelBar {
-      .menu {
-        ul {
-          li {
-            a {
-              font-size: 14px;
-            }
-          }
-        }
+  .root .panelBar .menu ul li a {
+    font-size: 14px;
+  }
+}
       }
     }
   }
 }
+
